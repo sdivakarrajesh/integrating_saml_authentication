@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.saml.login.opensaml</groupId>
+  <artifactId>saml_login_with_opensaml</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>saml_login_with_opensaml Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+<dependencies>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		
+		
+
+<dependency>
+    <groupId>org.apache.santuario</groupId>
+    <artifactId>xmlsec</artifactId>
+    <version>1.5.7</version>
+</dependency>
+	<dependency>
+    <groupId>org.opensaml</groupId>
+    <artifactId>opensaml</artifactId>
+    <version>2.6.4</version>
+</dependency>
+	
+<dependency>
+    <groupId>xml-apis</groupId>
+    <artifactId>xml-apis</artifactId>
+    <version>1.4.01</version>
+</dependency>
+<dependency>
+    <groupId>org.opensaml</groupId>
+    <artifactId>openws</artifactId>
+    <version>1.5.1</version>
+</dependency>
+<dependency>
+    <groupId>xalan</groupId>
+    <artifactId>serializer</artifactId>
+    <version>2.7.1</version>
+</dependency>
+
+<dependency>
+    <groupId>com.okta.sdk</groupId>
+    <artifactId>okta-sdk-api</artifactId>
+    <version>1.2.0</version>
+</dependency>
+
+<dependency>
+    <groupId>com.okta.sdk</groupId>
+    <artifactId>okta-sdk-impl</artifactId>
+    <version>1.2.0</version>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>com.okta.sdk</groupId>
+    <artifactId>okta-sdk-httpclient</artifactId>
+    <version>1.2.0</version>
+    <scope>runtime</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.opensaml</groupId>
+    <artifactId>xmltooling</artifactId>
+    <version>1.4.4</version>
+    
+</dependency>
+<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>1.1.0.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>5.0.1.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.0.1.RELEASE</version>
+</dependency>
+
+<dependency>
+    <groupId>commons-collections</groupId>
+    <artifactId>commons-collections</artifactId>
+    <version>3.2.1</version>
+</dependency>
+<dependency>
+    <groupId>commons-lang</groupId>
+    <artifactId>commons-lang</artifactId>
+    <version>2.6</version>
+</dependency>
+
+
+
+
+<dependency>
+    <groupId>xml-security</groupId>
+    <artifactId>xmlsec</artifactId>
+    <version>1.3.0</version>
+</dependency>
+	</dependencies>
+  <build>
+    <finalName>saml_login_with_opensaml</finalName>
+  </build>
+</project>
