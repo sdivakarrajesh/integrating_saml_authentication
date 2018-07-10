@@ -56,13 +56,13 @@ String idpAppURL = "https://dev-692312.oktapreview.com/app/zohodev692312_demo_3/
 String relayState = "?articleId=1234";
 String assertionConsumerServiceUrl = "https://login.company.com/ssorequest/idp/okta";
 String issuerId = "http://www.okta.com/exka9jbh72o7D4REL0h7";
-System.out.println("1");
+
 String redirectUrl = null;
 	
     String url = null;
 
     try {
-    	System.out.println("3");
+    	
         DateTime issueInstant = new DateTime();
         AuthnRequestBuilder authRequestBuilder = new AuthnRequestBuilder();
         AuthnRequest authRequest = authRequestBuilder.buildObject(SAML2_PROTOCOL, "AuthnRequest", "samlp");
@@ -71,38 +71,38 @@ String redirectUrl = null;
         authRequest.setIssueInstant(issueInstant);//time
         authRequest.setProtocolBinding(SAML2_POST_BINDING);
         authRequest.setAssertionConsumerServiceURL(assertionConsumerServiceUrl);
-        System.out.println("4");
+        
         IssuerBuilder issuerBuilder = new IssuerBuilder(); 
         Issuer issuer = issuerBuilder.buildObject(); 
         issuer.setValue(issuerId);
         authRequest.setIssuer(issuer); 
-        System.out.println("5");
+        
         NameIDPolicy nameIDPolicy = new NameIDPolicyBuilder().buildObject(); 
         nameIDPolicy.setFormat(SAML2_NAME_ID_POLICY); 
         nameIDPolicy.setAllowCreate(Boolean.TRUE); 
         authRequest.setNameIDPolicy(nameIDPolicy); 
-        System.out.println("6");
+        
         AuthnContextClassRefBuilder authnContextClassRefBuilder = new AuthnContextClassRefBuilder();
         AuthnContextClassRef authnContextClassRef = 
           authnContextClassRefBuilder.buildObject(SAML2_ASSERTION, "AuthnContextClassRef", "saml");
         authnContextClassRef.setAuthnContextClassRef(SAML2_PASSWORD_PROTECTED_TRANSPORT);
-        System.out.println("7");
+        
         //Create RequestedAuthnContext
         RequestedAuthnContextBuilder requestedAuthnContextBuilder = new RequestedAuthnContextBuilder();
         RequestedAuthnContext requestedAuthnContext = 
           requestedAuthnContextBuilder.buildObject();
         requestedAuthnContext.setComparison(AuthnContextComparisonTypeEnumeration.EXACT);
         requestedAuthnContext.getAuthnContextClassRefs().add(authnContextClassRef);
-        System.out.println("8");
+        
         authRequest.setRequestedAuthnContext(requestedAuthnContext);
         authRequest.setID(UUID.randomUUID().toString()); 
         authRequest.setVersion(SAMLVersion.VERSION_20);
-        System.out.println("9");
+        
         
         Marshaller marshaller = org.opensaml.Configuration.getMarshallerFactory().getMarshaller(authRequest);
-        System.out.println(authRequest);
+        
         org.w3c.dom.Element authDOM = marshaller.marshall(authRequest);
-        System.out.println("10");
+        
         StringWriter rspWrt = new StringWriter();
         XMLHelper.writeNode(authDOM, rspWrt);
         String messageXML = rspWrt.toString();
@@ -114,10 +114,10 @@ String redirectUrl = null;
         deflaterOutputStream.close();
         String samlRequest = Base64.encodeBytes(byteArrayOutputStream.toByteArray(), Base64.DONT_BREAK_LINES);
       	samlRequest = URLEncoder.encode(samlRequest,"UTF-8");
-      	System.out.println("11");
+      	
       // Prepare final Url
       url = idpAppURL + "?SAMLRequest=" + samlRequest + "&RelayState=" + URLEncoder.encode(relayState,"UTF-8");
-      System.out.println("12");
+      
     } catch (Exception ex) {
      ex.printStackTrace();
    
