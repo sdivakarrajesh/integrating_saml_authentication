@@ -6,8 +6,11 @@ This is a sample application that demonstrates SP-intitiated login flow. The one
 where the user enters his/her login details and becomes authenticated. A simple forming of the SAML request and parsing of the SAML request is included in the code.
 Simply create a dynamic-web project and import the code as a maven project in your favorite IDE.. preferrably eclipse EE Mars
 
-
 This sample application makes use of OKTA as the identity provider to provide authentication for a test application that redirects based on the user's role, whether its Admin or user.
+
+This application uses the openSAML library and few other dependencies to create and parse the SAML response and request.
+
+To know the list of all the dependencies see the POM.xml
 
 ## How to get this application up and running:
 
