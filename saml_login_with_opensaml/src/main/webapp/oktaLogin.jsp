@@ -35,6 +35,7 @@
 </head>
 <body>
 <%try {
+	/* Initializing the OpenSAML library, Should be in some central place */
 	DefaultBootstrap.bootstrap();
 	System.out.println("2");
 	
@@ -60,9 +61,17 @@ String issuerId = "http://www.okta.com/exka9jbh72o7D4REL0h7";
 String redirectUrl = null;
 	
     String url = null;
-
+	 /*
+	* Return's redirectUrl
+	*  - Creates SAML2 AuthN object
+	*  - Compresses it
+	*  - Base 64 encode it
+	*  - URL encode it
+	*  - Appends RelayState
+	*/
     try {
-    	
+    	//Generate ID
+		
         DateTime issueInstant = new DateTime();
         AuthnRequestBuilder authRequestBuilder = new AuthnRequestBuilder();
         AuthnRequest authRequest = authRequestBuilder.buildObject(SAML2_PROTOCOL, "AuthnRequest", "samlp");
@@ -72,22 +81,37 @@ String redirectUrl = null;
         authRequest.setProtocolBinding(SAML2_POST_BINDING);
         authRequest.setAssertionConsumerServiceURL(assertionConsumerServiceUrl);
         
+		
+		//Building issuer Object
+		
         IssuerBuilder issuerBuilder = new IssuerBuilder(); 
         Issuer issuer = issuerBuilder.buildObject(); 
         issuer.setValue(issuerId);
         authRequest.setIssuer(issuer); 
         
+		
+		
+		//Building NameIDPolicy Object
+		
         NameIDPolicy nameIDPolicy = new NameIDPolicyBuilder().buildObject(); 
         nameIDPolicy.setFormat(SAML2_NAME_ID_POLICY); 
         nameIDPolicy.setAllowCreate(Boolean.TRUE); 
         authRequest.setNameIDPolicy(nameIDPolicy); 
         
+		
+		
+		
+		//Building the RequestedAuthnContext object
+		
+		//Create AuthnContextClassRef
+		
         AuthnContextClassRefBuilder authnContextClassRefBuilder = new AuthnContextClassRefBuilder();
         AuthnContextClassRef authnContextClassRef = 
           authnContextClassRefBuilder.buildObject(SAML2_ASSERTION, "AuthnContextClassRef", "saml");
         authnContextClassRef.setAuthnContextClassRef(SAML2_PASSWORD_PROTECTED_TRANSPORT);
         
         //Create RequestedAuthnContext
+		
         RequestedAuthnContextBuilder requestedAuthnContextBuilder = new RequestedAuthnContextBuilder();
         RequestedAuthnContext requestedAuthnContext = 
           requestedAuthnContextBuilder.buildObject();
@@ -99,6 +123,11 @@ String redirectUrl = null;
         authRequest.setVersion(SAMLVersion.VERSION_20);
         
         
+		
+		/*
+		* Converts AuthN object to xml, compresses it, base64 encode it and url encode it
+		*/
+   
         Marshaller marshaller = org.opensaml.Configuration.getMarshallerFactory().getMarshaller(authRequest);
         
         org.w3c.dom.Element authDOM = marshaller.marshall(authRequest);
@@ -115,8 +144,9 @@ String redirectUrl = null;
         String samlRequest = Base64.encodeBytes(byteArrayOutputStream.toByteArray(), Base64.DONT_BREAK_LINES);
       	samlRequest = URLEncoder.encode(samlRequest,"UTF-8");
       	
-      // Prepare final Url
-      url = idpAppURL + "?SAMLRequest=" + samlRequest + "&RelayState=" + URLEncoder.encode(relayState,"UTF-8");
+		// Prepare final Url
+		
+		url = idpAppURL + "?SAMLRequest=" + samlRequest + "&RelayState=" + URLEncoder.encode(relayState,"UTF-8");
       
     } catch (Exception ex) {
      ex.printStackTrace();
@@ -131,6 +161,5 @@ String redirectUrl = null;
     
 %>
 
-Test
 </body>
 </html>
