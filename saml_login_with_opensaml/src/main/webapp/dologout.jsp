@@ -11,7 +11,7 @@
 			
 			response.sendRedirect("index.jsp");
 		}
-		
+		// ToDo add a proper sign out method 
 	%>
 </body>
 </html>
