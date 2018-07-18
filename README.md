@@ -2,7 +2,7 @@
 
 ## What this application does?
 
-This is a sample application that demonstrates SP-intitiated login flow. The one clicking the login button, the user is redirected to the identity provider's website 
+This is a sample application that demonstrates SP-intitiated login flow. On clicking the login button, the user is redirected to the identity provider's website 
 where the user enters his/her login details and becomes authenticated. A simple forming of the SAML request and parsing of the SAML request is included in the code.
 Simply create a dynamic-web project and import the code as a maven project in your favorite IDE.. preferrably eclipse EE Mars
 
@@ -28,6 +28,9 @@ To know the list of all the dependencies see the POM.xml
 		
 - These values can be obtained by creating a developer account in okta or anyother identity provider and by following the steps to create a SAML authenticaiton using the instruction.
 Referring the documentation is the right solution to get to know the right procedure.
+
+- You can check out how to create setup an application in okta [here](https://developer.okta.com/standards/SAML/setting_up_a_saml_application_in_okta)
+ 
 
 
 
