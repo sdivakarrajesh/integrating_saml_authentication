@@ -31,7 +31,11 @@ Referring the documentation is the right solution to get to know the right proce
 
 - You can check out how to create setup an application in okta [here](https://developer.okta.com/standards/SAML/setting_up_a_saml_application_in_okta)
  
+## Related
 
+If you feel that the code provided here is a bit over-whelming, you can try using the java-saml-toolkit provided by one-login.
+It is an out-of-the-box solution that can explains and solves the task of creating a SAML request with the required properties and parsing the response.
+Check out [this awesome documentation] (https://developers.onelogin.com/saml/java) that explains the same
 
 
 		
